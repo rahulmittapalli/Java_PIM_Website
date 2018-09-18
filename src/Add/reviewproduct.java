@@ -3,7 +3,6 @@ package Add;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -51,8 +50,8 @@ public class reviewproduct {
 					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
 					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
 					System.out.println(pagenumbers.size());
-					WebElement table = driver.findElement(By.name("SimpleTable"));
-					for (int p = 1; p <= pagenumbers.size(); p++) {
+					for (int p = 1; p <= pagenumbers.size()-1; p++) {
+						System.out.println("p value is "+p);
 						List<WebElement> rows = driver.findElements(By.tagName("tr"));
 						for (int k = 1; k <= rows.size() - 2; k++) {
 							System.out.println("rows size " + rows.size());
@@ -62,17 +61,18 @@ public class reviewproduct {
 							count++;
 							System.out.println("Count value is "+count);
 						}
-						if(rows.size()==22) {
-						pagenumbers.get(p).click();
+						Thread.sleep(2000);
+						if (p != pagenumbers.size()-1 && driver.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12")).isDisplayed()){
+							WebElement svgObj = driver
+									.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12"));
+							Actions actionBuilder = new Actions(driver);
+							actionBuilder.click(svgObj).build().perform();
 						Thread.sleep(3000);
-						}
-						else
-						{
-							break;
 						}
 					}
 					System.out.println("Total number of Products are "+count);
 				}
+				break;
 			}
 			list.get(i).findElement(By.tagName("a")).click();
 		}
