@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class reviewproduct {
+public class getcountry {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -34,12 +34,12 @@ public class reviewproduct {
 				list.get(i).findElement(By.tagName("a")).click();
 			}
 			System.out.println(list.get(i).findElement(By.tagName("a")).getText());
-			if (list.get(i).findElement(By.tagName("a")).getText().equals("Review")) {
+			if (list.get(i).findElement(By.tagName("a")).getText().equals("System")) {
 				if (list.get(i).findElement(By.tagName("ul")) != null) {
 					List<WebElement> child = list.get(i).findElements(By.tagName("li"));
-					System.out.println(child.size());
+					//System.out.println(child.size());
 					for (int j = 0; j < child.size(); j++) {
-						if (child.get(j).getText().equals("Products")) {
+						if (child.get(j).getText().equals("Countries")) {
 							child.get(j).click();
 							Thread.sleep(3000);
 						}
@@ -58,17 +58,16 @@ public class reviewproduct {
 					else
 					{
 						pagecount=pagenumbers.size();
-
 					}
-					System.out.println(pagecount);
+					//System.out.println(pagecount);
 					for (int p = 1; p <= pagecount; p++) {
-						System.out.println("p value is "+p);
+						//System.out.println("p value is "+p);
 						List<WebElement> rows = driver.findElements(By.tagName("tr"));
 						for (int k = 1; k <= rows.size() - 2; k++) {
 							System.out.println("rows size " + rows.size());
 							List<WebElement> columns = rows.get(k).findElements(By.tagName("td"));
-							System.out.println("Value of k " + k);
-							System.out.println(columns.get(0).getText());	
+							//System.out.println("Value of k " + k);
+							System.out.println(columns.get(2).getText());	
 							count++;
 							System.out.println("Count value is "+count);
 						}
@@ -81,7 +80,7 @@ public class reviewproduct {
 						Thread.sleep(3000);
 						}
 					}
-					System.out.println("Total number of Products are "+count);
+					System.out.println("Total number of Countries are "+count);
 				}
 				break;
 			}

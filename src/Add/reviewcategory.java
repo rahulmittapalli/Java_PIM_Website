@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class reviewproduct {
+public class reviewcategory {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -39,7 +39,7 @@ public class reviewproduct {
 					List<WebElement> child = list.get(i).findElements(By.tagName("li"));
 					System.out.println(child.size());
 					for (int j = 0; j < child.size(); j++) {
-						if (child.get(j).getText().equals("Products")) {
+						if (child.get(j).getText().equals("Categories")) {
 							child.get(j).click();
 							Thread.sleep(3000);
 						}
@@ -58,7 +58,6 @@ public class reviewproduct {
 					else
 					{
 						pagecount=pagenumbers.size();
-
 					}
 					System.out.println(pagecount);
 					for (int p = 1; p <= pagecount; p++) {
@@ -81,7 +80,7 @@ public class reviewproduct {
 						Thread.sleep(3000);
 						}
 					}
-					System.out.println("Total number of Products are "+count);
+					System.out.println("Total number of Categories are "+count);
 				}
 				break;
 			}
