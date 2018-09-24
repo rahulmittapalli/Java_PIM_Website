@@ -24,12 +24,7 @@ public class sortbyname {
 		driver.findElement(By.xpath("//*[@type='password']")).sendKeys("12345678");
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		Thread.sleep(5000);
-		int count = 0;
-		int totalcount = 0;
 		int pagecount = 0;
-		int modifiedcount = 0;
-		int newlyadded = 0;
-
 		WebElement nav = driver.findElement(By.id(("sidebar")));
 		List<WebElement> list = nav.findElements(By.xpath("//ul[@class='list-unstyled components']/li"));
 		System.out.println(list.size());
@@ -86,6 +81,8 @@ public class sortbyname {
 						}
 					}
 				}
+				Thread.sleep(3000);
+				driver.findElement(By.className("fa-sign-out")).click();
 				break;
 			}
 			list.get(i).findElement(By.tagName("a")).click();
