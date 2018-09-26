@@ -24,8 +24,8 @@ public class productdata {
 		driver.findElement(By.xpath("//*[@type='password']")).sendKeys("12345678");
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		Thread.sleep(5000);
-		int count=0;
-		int pagecount=0;
+		int count = 0;
+		int pagecount = 0;
 		WebElement nav = driver.findElement(By.id(("sidebar")));
 		List<WebElement> list = nav.findElements(By.xpath("//ul[@class='list-unstyled components']/li"));
 		System.out.println(list.size());
@@ -38,7 +38,7 @@ public class productdata {
 			if (list.get(i).findElement(By.tagName("a")).getText().equals("Products Database")) {
 				if (list.get(i).findElement(By.tagName("ul")) != null) {
 					List<WebElement> child = list.get(i).findElements(By.tagName("li"));
-					//System.out.println(child.size());
+					// System.out.println(child.size());
 					for (int j = 0; j < child.size(); j++) {
 						if (child.get(j).getText().equals("Products")) {
 							child.get(j).click();
@@ -47,47 +47,54 @@ public class productdata {
 					}
 					Select s = new Select(
 							driver.findElement(By.cssSelector(".form-control.input-sm.-page-size-select.fs-12.f-clr")));
-					s.selectByValue("20");
+					s.selectByValue("5");
 					Thread.sleep(3000);
 					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
 					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					if(pagenumbers.size()>1)
-					{
+					System.out.println("hahaha " + pagenumbers.size());
+					for (int p = 0; p < pagenumbers.size(); p++) {
+						System.out.println("value of p "+p);
+						if (p == pagenumbers.size() - 2) {
+							System.out.println(pagenumbers.get(p).findElement(By.tagName("a")).getText());
+						}
+						System.out.println(pagenumbers.get(p).findElement(By.tagName("a")).getText());
+					}
+					if (pagenumbers.size() > 1) {
 						System.out.println("Inside");
-						pagecount=pagenumbers.size()-1;
+						pagecount = pagenumbers.size() - 1;
+					} else {
+						pagecount = pagenumbers.size();
 					}
-					else
-					{
-						pagecount=pagenumbers.size();
-					}
-					WebElement element=driver.findElement(By.xpath("//button[contains(text(),'Add New')]"));
-					JavascriptExecutor js = (JavascriptExecutor)driver;
-					js.executeScript("arguments[0].scrollIntoView();", element); 
+					WebElement element = driver.findElement(By.xpath("//button[contains(text(),'Add New')]"));
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					js.executeScript("arguments[0].scrollIntoView();", element);
 
-					//System.out.println(pagecount);
+					System.out.println(pagecount);
 					for (int p = 1; p <= pagecount; p++) {
-						//System.out.println("p value is "+p);
+						// System.out.println("p value is "+p);
 						List<WebElement> rows = driver.findElements(By.tagName("tr"));
 						for (int k = 1; k <= rows.size() - 2; k++) {
 							System.out.println("rows size " + rows.size());
 							List<WebElement> columns = rows.get(k).findElements(By.tagName("td"));
-							System.out.println("column size is "+columns.size());
-							//System.out.println("Value of k " + k);
+							System.out.println("column size is " + columns.size());
+							// System.out.println("Value of k " + k);
 							System.out.println("DATA");
-							System.out.println(columns.get(0).getText());	
+							System.out.println(columns.get(1).getText());
 							count++;
-							System.out.println("Count value is "+count);
+							System.out.println("Count value is " + count);
 						}
 						Thread.sleep(2000);
-						if (p != pagecount && driver.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12")).isDisplayed()){
+						if (p != pagecount
+								&& driver.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12"))
+										.isDisplayed()) {
 							WebElement svgObj = driver
 									.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12"));
 							Actions actionBuilder = new Actions(driver);
 							actionBuilder.click(svgObj).build().perform();
-						Thread.sleep(3000);
+							Thread.sleep(3000);
 						}
 					}
-					System.out.println("Total number of Countries are "+count);
+					System.out.println("Total number of Countries are " + count);
 				}
 				break;
 			}

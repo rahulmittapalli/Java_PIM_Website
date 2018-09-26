@@ -12,15 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class productview {
+public class approveproduct {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		System.setProperty("webdriver.chrome.driver", "/Users/rahulmittapalli/Downloads/Drivers/chromedriver");
 		WebDriver driver = new ChromeDriver();
 		// WebDriver driver=new SafariDriver();
-		driver.manage().window().maximize();
-		;
+		driver.manage().window().fullscreen();
 		driver.get("https://dev-pim.dermalogica.com");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@type='text']")).sendKeys("mittapalli.rahul@gmail.com");
@@ -29,7 +28,6 @@ public class productview {
 		Thread.sleep(5000);
 		int count = 0;
 		int pagecount = 0;
-		String value = null;
 		WebElement nav = driver.findElement(By.id(("sidebar")));
 		List<WebElement> list = nav.findElements(By.xpath("//ul[@class='list-unstyled components']/li"));
 		System.out.println(list.size());
@@ -39,7 +37,7 @@ public class productview {
 				list.get(i).findElement(By.tagName("a")).click();
 			}
 			System.out.println(list.get(i).findElement(By.tagName("a")).getText());
-			if (list.get(i).findElement(By.tagName("a")).getText().equals("Products Database")) {
+			if (list.get(i).findElement(By.tagName("a")).getText().equals("Review")) {
 				if (list.get(i).findElement(By.tagName("ul")) != null) {
 					List<WebElement> child = list.get(i).findElements(By.tagName("li"));
 					// System.out.println(child.size());
@@ -49,40 +47,29 @@ public class productview {
 							Thread.sleep(3000);
 						}
 					}
+
+					// Find total products in the review page
 					Select s = new Select(
 							driver.findElement(By.cssSelector(".form-control.input-sm.-page-size-select.fs-12.f-clr")));
-					s.selectByValue("5");
+					s.selectByValue("20");
 					Thread.sleep(3000);
 					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
 					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					for (int p = 1; p < pagenumbers.size(); p++) {
-						if (p == pagenumbers.size() - 2) {
-							value = pagenumbers.get(p).findElement(By.tagName("a")).getText();
-							System.out.println(value);
-						}
+					if (pagenumbers.size() > 1) {
+						System.out.println("Inside");
+						pagecount = pagenumbers.size() - 1;
+					} else {
+						pagecount = pagenumbers.size();
 					}
-					pagecount = Integer.parseInt(value);
-					System.out.println("pagecount is " + pagecount);
 					JavascriptExecutor js = (JavascriptExecutor) driver;
 					js.executeScript("window.scrollTo(0,0)");
+
+					// System.out.println(pagecount);
 					for (int p = 1; p <= pagecount; p++) {
-						System.out.println("p value is " + p);
-						Thread.sleep(3000);
+						// System.out.println("p value is "+p);
 						List<WebElement> rows = driver.findElements(By.tagName("tr"));
 						for (int k = 1; k <= rows.size() - 2; k++) {
-							System.out.println("clicked on View button");
-							System.out.println(rows.size());
-							System.out.println(driver.findElements(By.tagName("tr")).get(k)
-									.findElements(By.tagName("td")).get(1).getText());
-							System.out.println(k);
-							driver.findElements(By.tagName("tr")).get(k).findElements(By.tagName("td")).get(7)
-									.findElement(By.className("fa-eye")).click();
-							WebDriverWait wait = new WebDriverWait(driver, 10);
-							// driver.findElement(By.className("fa-check")).click();
-							// Thread.sleep(4000);
-							wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fa-arrow-left")));
-							driver.findElement(By.className("fa-arrow-left")).click();
-							Thread.sleep(4000);
+							List<WebElement> columns = rows.get(k).findElements(By.tagName("td"));
 							count++;
 							System.out.println("Count value is " + count);
 						}
@@ -94,19 +81,30 @@ public class productview {
 									.findElement(By.cssSelector(".svg-inline--fa.fa-chevron-double-right.fa-w-12"));
 							Actions actionBuilder = new Actions(driver);
 							actionBuilder.click(svgObj).build().perform();
-							Thread.sleep(5000);
+							Thread.sleep(3000);
 						}
+					}
+					JavascriptExecutor js1 = (JavascriptExecutor) driver;
+					js1.executeScript("window.scrollTo(0,0)");
+					for (int c = 1; c <= count; c++) {
+						driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).get(6)
+								.findElement(By.className("fa-eye")).click();
+						System.out.println("clicked on View button");
+						WebDriverWait wait = new WebDriverWait(driver, 10);
+						wait.until(ExpectedConditions
+								.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Approve')]")));
 						Thread.sleep(2000);
-						JavascriptExecutor js1 = (JavascriptExecutor) driver;
-						js1.executeScript("window.scrollTo(0,0)");
+						driver.findElement(By.xpath("//button[contains(text(),'Approve')]")).click();
+						;
 						Thread.sleep(5000);
 					}
-
 					System.out.println("Total number of Products are " + count);
 				}
 				break;
 			}
+			list.get(i).findElement(By.tagName("a")).click();
 		}
+
 		driver.close();
 	}
 }
