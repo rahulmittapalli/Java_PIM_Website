@@ -55,12 +55,9 @@ public class productview {
 					Thread.sleep(3000);
 					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
 					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					for (int p = 1; p < pagenumbers.size(); p++) {
-						if (p == pagenumbers.size() - 2) {
-							value = pagenumbers.get(p).findElement(By.tagName("a")).getText();
-							System.out.println(value);
-						}
-					}
+					System.out.println(pagenumbers.size());
+					value=pagenumbers.get(pagenumbers.size()-2).findElement(By.tagName("a")).getText();
+					System.out.println("value is "+value);
 					pagecount = Integer.parseInt(value);
 					System.out.println("pagecount is " + pagecount);
 					JavascriptExecutor js = (JavascriptExecutor) driver;

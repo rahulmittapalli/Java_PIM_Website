@@ -25,6 +25,7 @@ public class searchproduct {
 		Thread.sleep(5000);
 		int count = 0;
 		int pagecount = 0;
+		String value=null;
 		WebElement nav = driver.findElement(By.id(("sidebar")));
 		List<WebElement> list = nav.findElements(By.xpath("//ul[@class='list-unstyled components']/li"));
 		System.out.println(list.size());
@@ -46,24 +47,17 @@ public class searchproduct {
 					JavascriptExecutor js = (JavascriptExecutor) driver;
 					js.executeScript("window.scrollTo(0,0)");
 					Thread.sleep(3000);
-//					driver.findElement(By.xpath("//input[@placeholder='search']")).click();
-//					Thread.sleep(3000);
-					driver.findElement(By.xpath("//input[@placeholder='search']")).sendKeys("massage");
-					Thread.sleep(2000);
-//					driver.findElement(By.id("navbarNavDropdown")).click();
-//					Thread.sleep(3000);
+					driver.findElement(By.xpath("//input[@placeholder='search']")).sendKeys("gel");
+					Thread.sleep(5000);
 					System.out.println("Product information");
-					// product data
+					//pagecount value
 					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
 					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					if (pagenumbers.size() > 1) {	
-						System.out.println("Inside");
-						pagecount = pagenumbers.size() - 1;
-					} else {
-						pagecount = pagenumbers.size();
-					}
-					Thread.sleep(5000);
-					System.out.println(pagecount);
+					value=pagenumbers.get(pagenumbers.size()-2).findElement(By.tagName("a")).getText();
+					System.out.println("value is "+value);
+					pagecount=Integer.parseInt(value);
+					System.out.println("pagecount is " + pagecount);
+					// product data
 					for (int p = 1; p <= pagecount; p++) {
 						List<WebElement> rows = driver.findElements(By.tagName("tr"));
 						for (int k = 1; k <= rows.size() - 2; k++) {

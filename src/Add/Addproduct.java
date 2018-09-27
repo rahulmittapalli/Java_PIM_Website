@@ -18,7 +18,7 @@ public class Addproduct {
 		driver.manage().window().maximize();
 		driver.get("https://dev-pim.dermalogica.com");
 		Thread.sleep(2000);
-		String searchKey = "category";
+		String searchKey = "cleansers";
 		String products = "precleanse";
 		String checkboxs = "shortdescription";
 		driver.findElement(By.xpath("//*[@type='text']")).sendKeys("mittapalli.rahul@gmail.com");
@@ -38,7 +38,7 @@ public class Addproduct {
 		}
 		driver.findElement(By.className("vue-treeselect__input")).clear();
 		Thread.sleep(5000);
-		driver.findElement(By.xpath("//input[@placeholder='product name']")).sendKeys("NAME");
+		driver.findElement(By.xpath("//input[@placeholder='product name']")).sendKeys("RAHUL");
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).sendKeys("Sub title");
 		Thread.sleep(3000);
@@ -97,7 +97,6 @@ public class Addproduct {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@data-placeholder='how to use']")).sendKeys("Error message");
 		driver.findElement(By.xpath("//label[@class='toggle_yes2 m-0']")).click();
-		driver.findElement(By.xpath("//input[@placeholder='optional text']")).sendKeys("HAHAHAHA");
 		driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']")).sendKeys("www.google.com");
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//a[@class='anchor c-point' and contains(text(),'add size')]")).click();
