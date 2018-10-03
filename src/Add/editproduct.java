@@ -30,7 +30,7 @@ public class editproduct {
 		System.out.println(list.size());
 		for (int i = 1; i < list.size(); i++) {
 			Thread.sleep(2000);
-			if (i > 1) {
+			if (i > 1) {	
 				list.get(i).findElement(By.tagName("a")).click();
 			}
 			System.out.println(list.get(i).findElement(By.tagName("a")).getText());
@@ -51,7 +51,7 @@ public class editproduct {
 					WebDriverWait wait = new WebDriverWait(driver, 10);
 					wait.until(ExpectedConditions
 							.visibilityOfElementLocated(By.xpath("//input[@placeholder='product name']")));
-//					driver.findElement(By.className("vue-treeselect__control")).click();
+////					driver.findElement(By.className("vue-treeselect__control")).click();
 //					Thread.sleep(2000);
 //					driver.findElement(By.className("vue-treeselect__input")).sendKeys("cleansers");
 //					Thread.sleep(2000);
@@ -73,7 +73,6 @@ public class editproduct {
 //					Thread.sleep(2000);
 //					driver.findElement(By.className("fa-check")).click();
 //					Thread.sleep(2000);
-//					//
 //					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).click();
 //					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).clear();
 //					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).sendKeys("Edit Sub title");
@@ -83,68 +82,77 @@ public class editproduct {
 //					driver.findElement(By.xpath("//*[@data-placeholder='add description']"))
 //							.sendKeys("Edit Description");
 //					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//input[@type='search']")).sendKeys("active moist");
-//					WebElement prescribeproducts = driver.findElement(By.className("dropdown-menu"));
-//					List<WebElement> drop = prescribeproducts.findElements(By.tagName("li"));
-//					for (int v = 0; v < drop.size(); v++) {
-//						if ((drop.get(v).getText().trim()).equals("active moist")) {
-//							Thread.sleep(2000);
-//							drop.get(v).click();
-//						}
-//					}
-//					Thread.sleep(2000);
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']")).clear();
-//					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"))
-//							.sendKeys(" Edit Ingredients");
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					 driver.findElement(By.xpath("//p[@class='m-0 ptb-10 fs-12 c-point' and contains(text(),'select')]")).click();
-//					 WebElement checkbox = driver.findElement(By.className("inn-attr"));
-//					 List<WebElement> value = checkbox.findElements(By.tagName("input"));
-//					 WebElement Element=driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"));
-//					 js.executeScript("arguments[0].scrollIntoView();", Element);
-//					 Thread.sleep(3000);
-//					 for (int i1 = 0; i1 < value.size(); i1++) {
-//					 if ((value.get(i1).getAttribute("value").equals(checkboxs))) {
-//					 System.out.println(value.get(i1).getAttribute("value"));
-//					 value.get(i1).click();
-//					 }
-//					 }
-//					 Thread.sleep(2000);
-//					 driver.findElement(By.xpath("//button[@type='button' and contains(text(),'Add')]")).click();
-//					 Thread.sleep(5000);
-//					 driver.findElement(By.xpath("//*[@placeholder='add description']")).sendKeys("How");
-//					 Thread.sleep(3000);
-//					 System.out.println(driver.findElement(By.className("fa-check")).isDisplayed());
-//					 driver.findElement(By.className("fa-check")).click();
-//					 Thread.sleep(2000);
-//					WebElement date = driver.findElement(By.className("date_select"));
-//					date.click();
-//					List<WebElement> select = date.findElements(By.tagName("li"));
-//					for (int i1 = 0; i1 < select.size(); i1++) {
-//						if ((select.get(i1).getText().trim()).equals("Start Date")) {
-//							Thread.sleep(2000);
-//							select.get(i1).click();
-//						}
-//					}
-//					Thread.sleep(8000);
-//					driver.findElement(By.className("dateInput")).click();
-//					WebElement calendar = driver.findElement(By.className("dateInput"));
-//					Thread.sleep(4000);
-//					List<WebElement> dateread = calendar.findElements(By.className("c-day-content"));
-//					for (int i1 = 0; i1 < dateread.size(); i1++) {
-//						if (dateread.get(i1).getText().equals("22")) {
-//							System.out.println("Selected the date");
-//							dateread.get(i1).click();
-//							break;
-//						}
-//					}
-//					Thread.sleep(3000);
-//					calendar.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					//WebElement text=driver.findElement(By.xpath("//p[contains(text(),'Top products to prescribe')]"));
+					//System.out.println(text.isDisplayed());
+					WebElement productclick=driver.findElement(By.xpath("//div[@class='dropdown v-select fs-12 m-0 custom_select open searchable']"));
+					System.out.println(productclick.isDisplayed());
+					productclick.click();
+					driver.findElement(By.xpath("//input[@placeholder='select preferred products']")).sendKeys("active moist");
+					WebElement prescribeproducts = driver.findElement(By.className("dropdown-menu"));
+					List<WebElement> drop = prescribeproducts.findElements(By.tagName("li"));
+					for (int v = 0; v < drop.size(); v++) {
+						if ((drop.get(v).getText().trim()).equals("active moist")) {
+							Thread.sleep(2000);
+							drop.get(v).click();
+						}
+					}
+					Thread.sleep(2000);
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']")).clear();
+					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"))
+							.sendKeys(" Edit Ingredients");
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					 driver.findElement(By.xpath("//p[@class='m-0 ptb-10 fs-12 c-point' and contains(text(),'select')]")).click();
+					 WebElement checkbox = driver.findElement(By.className("inn-attr"));
+					 List<WebElement> value = checkbox.findElements(By.tagName("input"));
+					 WebElement Element=driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"));
+					 js.executeScript("arguments[0].scrollIntoView();", Element);
+					 Thread.sleep(3000);
+					 for (int i1 = 0; i1 < value.size(); i1++) {
+					 if ((value.get(i1).getAttribute("value").equals(checkboxs))) {
+					 System.out.println(value.get(i1).getAttribute("value"));
+					 value.get(i1).click();
+					 }
+					 }
+					 Thread.sleep(2000);
+					 driver.findElement(By.xpath("//button[@type='button' and contains(text(),'Add')]")).click();
+					 Thread.sleep(5000);
+					 driver.findElement(By.xpath("//*[@data-placeholder='add description']")).sendKeys("How");
+					 Thread.sleep(3000);
+						List<WebElement> tickarray = driver.findElements(By.xpath(
+								"//div[@class='col-md-6'][1]//div//child::*"));
+						// System.out.println(tickarray);
+						tickarray.get(2).click();
+					// System.out.println(driver.findElement(By.className("fa-check")).isDisplayed());
+					 //driver.findElement(By.className("fa-check")).click();
+					 Thread.sleep(2000);
+					WebElement date = driver.findElement(By.className("date_select"));
+					date.click();
+					List<WebElement> select = date.findElements(By.tagName("li"));
+					for (int i1 = 0; i1 < select.size(); i1++) {
+						if ((select.get(i1).getText().trim()).equals("Start Date")) {
+							Thread.sleep(2000);
+							select.get(i1).click();
+						}
+					}
+					Thread.sleep(8000);
+					driver.findElement(By.className("dateInput")).click();
+					WebElement calendar = driver.findElement(By.className("dateInput"));
+					Thread.sleep(4000);
+					List<WebElement> dateread = calendar.findElements(By.className("c-day-content"));
+					for (int i1 = 0; i1 < dateread.size(); i1++) {
+						if (dateread.get(i1).getText().equals("22")) {
+							System.out.println("Selected the date");
+							dateread.get(i1).click();
+							break;
+						}
+					}
+					Thread.sleep(3000);
+					calendar.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
 					js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.className("dateInput")));
 					driver.findElement(By.xpath("//*[@data-placeholder='how to use']")).sendKeys("message");
 					driver.findElement(By.xpath("//label[@class='toggle_yes2 m-0']")).click();
