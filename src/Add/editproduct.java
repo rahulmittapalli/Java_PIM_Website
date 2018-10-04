@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,7 +31,7 @@ public class editproduct {
 		System.out.println(list.size());
 		for (int i = 1; i < list.size(); i++) {
 			Thread.sleep(2000);
-			if (i > 1) {	
+			if (i > 1) {
 				list.get(i).findElement(By.tagName("a")).click();
 			}
 			System.out.println(list.get(i).findElement(By.tagName("a")).getText());
@@ -51,44 +52,48 @@ public class editproduct {
 					WebDriverWait wait = new WebDriverWait(driver, 10);
 					wait.until(ExpectedConditions
 							.visibilityOfElementLocated(By.xpath("//input[@placeholder='product name']")));
-////					driver.findElement(By.className("vue-treeselect__control")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.className("vue-treeselect__input")).sendKeys("cleansers");
-//					Thread.sleep(2000);
-//					List<WebElement> category = driver.findElements(By.className("vue-treeselect__option--matched"));
-//					for (int c = 0; c < category.size(); c++) {
-//						if ((category.get(c).getText()).toLowerCase().trim().equals("cleansers")) {
-//							category.get(c).click();
-//						}
-//					}
-//					driver.findElement(By.className("vue-treeselect__input")).clear();
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(3000);
-//					// product name change
-//					WebElement productname = driver.findElement(By.xpath("//input[@placeholder='product name']"));
-//					productname.click();
-//					productname.clear();
-//					Thread.sleep(3000);
-//					productname.sendKeys("HAHAH");
-//					Thread.sleep(2000);
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).click();
-//					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).clear();
-//					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).sendKeys("Edit Sub title");
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//*[@data-placeholder='add description']")).clear();
-//					driver.findElement(By.xpath("//*[@data-placeholder='add description']"))
-//							.sendKeys("Edit Description");
-//					driver.findElement(By.className("fa-check")).click();
-					//Thread.sleep(2000);
-					//WebElement text=driver.findElement(By.xpath("//p[contains(text(),'Top products to prescribe')]"));
-					//System.out.println(text.isDisplayed());
-					WebElement productclick=driver.findElement(By.xpath("//div[@class='dropdown v-select fs-12 m-0 custom_select open searchable']"));
+					// driver.findElement(By.className("vue-treeselect__control")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.className("vue-treeselect__input")).sendKeys("cleansers");
+					Thread.sleep(2000);
+					List<WebElement> category = driver.findElements(By.className("vue-treeselect__option--matched"));
+					for (int c = 0; c < category.size(); c++) {
+						if ((category.get(c).getText()).toLowerCase().trim().equals("cleansers")) {
+							category.get(c).click();
+						}
+					}
+					driver.findElement(By.className("vue-treeselect__input")).clear();
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(3000);
+					// product name change
+					WebElement productname = driver.findElement(By.xpath("//input[@placeholder='product name']"));
+					productname.click();
+					productname.clear();
+					Thread.sleep(3000);
+					productname.sendKeys("HAHAH");
+					Thread.sleep(2000);
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).click();
+					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).clear();
+					driver.findElement(By.xpath("//input[@placeholder='add subtitle']")).sendKeys("Edit Sub title");
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//*[@data-placeholder='add description']")).clear();
+					driver.findElement(By.xpath("//*[@data-placeholder='add description']"))
+							.sendKeys("Edit Description");
+					driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					WebElement text = driver.findElement(By.xpath("//p[contains(text(),'Top products to prescribe')]"));
+					System.out.println(text.isDisplayed());
+					WebElement productclick = driver.findElement(
+							By.xpath("//div[@class='dropdown v-select fs-12 m-0 custom_select searchable']"));
 					System.out.println(productclick.isDisplayed());
-					productclick.click();
-					driver.findElement(By.xpath("//input[@placeholder='select preferred products']")).sendKeys("active moist");
+					Actions a = new Actions(driver);
+					a.moveToElement(productclick);
+					a.click();
+					a.sendKeys("active moist");
+					a.build().perform();
 					WebElement prescribeproducts = driver.findElement(By.className("dropdown-menu"));
 					List<WebElement> drop = prescribeproducts.findElements(By.tagName("li"));
 					for (int v = 0; v < drop.size(); v++) {
@@ -98,37 +103,47 @@ public class editproduct {
 						}
 					}
 					Thread.sleep(2000);
-					driver.findElement(By.className("fa-check")).click();
+					List<WebElement> tickarray = driver.findElements(By.xpath(
+							"//div[@class='dropdown v-select fs-12 m-0 custom_select searchable'][1]//following-sibling::div//child::*"));
+					tickarray.get(2).click();
+					// driver.findElement(By.className("fa-check")).click();
 					Thread.sleep(2000);
+					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']")).click();
 					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']")).clear();
 					driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"))
 							.sendKeys(" Edit Ingredients");
-					driver.findElement(By.className("fa-check")).click();
 					Thread.sleep(2000);
-					 driver.findElement(By.xpath("//p[@class='m-0 ptb-10 fs-12 c-point' and contains(text(),'select')]")).click();
-					 WebElement checkbox = driver.findElement(By.className("inn-attr"));
-					 List<WebElement> value = checkbox.findElements(By.tagName("input"));
-					 WebElement Element=driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"));
-					 js.executeScript("arguments[0].scrollIntoView();", Element);
-					 Thread.sleep(3000);
-					 for (int i1 = 0; i1 < value.size(); i1++) {
-					 if ((value.get(i1).getAttribute("value").equals(checkboxs))) {
-					 System.out.println(value.get(i1).getAttribute("value"));
-					 value.get(i1).click();
-					 }
-					 }
-					 Thread.sleep(2000);
-					 driver.findElement(By.xpath("//button[@type='button' and contains(text(),'Add')]")).click();
-					 Thread.sleep(5000);
-					 driver.findElement(By.xpath("//*[@data-placeholder='add description']")).sendKeys("How");
-					 Thread.sleep(3000);
-						List<WebElement> tickarray = driver.findElements(By.xpath(
-								"//div[@class='col-md-6'][1]//div//child::*"));
-						// System.out.println(tickarray);
-						tickarray.get(2).click();
+					List<WebElement> tickarray2 = driver.findElements(By.xpath(
+							"//div[@class='form-group m-0'][1]/div[@class='form-control ediv f-clr fs-12']//following-sibling::div//child::*"));
+					tickarray2.get(2).click();
+					// driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
+					js.executeScript("window.scrollTo(300,400)");
+					driver.findElement(By.xpath("//p[@class='m-0 ptb-10 fs-12 c-point' and contains(text(),'select')]"))
+							.click();
+					WebElement checkbox = driver.findElement(By.className("inn-attr"));
+					List<WebElement> value = checkbox.findElements(By.tagName("input"));
+					WebElement Element = driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']"));
+					js.executeScript("arguments[0].scrollIntoView();", Element);
+					Thread.sleep(3000);
+					for (int i1 = 0; i1 < value.size(); i1++) {
+						if ((value.get(i1).getAttribute("value").equals(checkboxs))) {
+							System.out.println(value.get(i1).getAttribute("value"));
+							value.get(i1).click();
+						}
+					}
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//button[@type='button' and contains(text(),'Add')]")).click();
+					Thread.sleep(5000);
+					List<WebElement> tickarray1 = driver
+							.findElements(By.xpath("//div[@class='col-md-6'][1]//div//child::*"));
+					tickarray1.get(2).click();
+					// driver.findElement(By.xpath("//*[@data-placeholder='add
+					// description']")).sendKeys("How");
+					// Thread.sleep(3000);
 					// System.out.println(driver.findElement(By.className("fa-check")).isDisplayed());
-					 //driver.findElement(By.className("fa-check")).click();
-					 Thread.sleep(2000);
+					// driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(2000);
 					WebElement date = driver.findElement(By.className("date_select"));
 					date.click();
 					List<WebElement> select = date.findElements(By.tagName("li"));
@@ -154,49 +169,55 @@ public class editproduct {
 					calendar.findElement(By.className("fa-check")).click();
 					Thread.sleep(2000);
 					js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.className("dateInput")));
+					//driver.findElement(By.xpath("//a[@class='anchor c-point' and contains(text(),'add professional application')]")).click();;
 					driver.findElement(By.xpath("//*[@data-placeholder='how to use']")).sendKeys("message");
 					driver.findElement(By.xpath("//label[@class='toggle_yes2 m-0']")).click();
 					Thread.sleep(5000);
-					//span[contains(text(), 'ABZ')]/../following-sibling::section/span[@name='edit']
-					System.out.println(driver.findElement(By.xpath("//div[@class='anchor c-point']/following-sibling::div[@class='inpt-icons']")).isDisplayed());
-					System.out.println(driver.findElement(By.className("inpt-icons")).findElement(By.className("fa-check")).isDisplayed());
-					driver.findElement(By.className("inpt-icons")).findElement(By.className("fa-check")).click();
+					List<WebElement> tickarray3 = driver.findElements(By.xpath(
+							"//a[@class='anchor c-point'][1]//following-sibling::div[@class='inpt-icons']//child::*"));
+					tickarray3.get(2).click();
 					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']")).click();
-//					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']")).clear();
-//					Thread.sleep(3000);
-//					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']"))
-//							.sendKeys("www.google1.com");
-//					Thread.sleep(2000);
-//					driver.findElement(By.className("fa-check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.xpath("//a[@class='anchor c-point' and contains(text(),'add size')]"))
-//							.click();
-//					Thread.sleep(3000);
-//					driver.findElement(By.id("file_0"))
-//							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
-//					Thread.sleep(3000);
-//					driver.findElement(By.id("siliconImage_0"))
-//							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
-//					Thread.sleep(3000);
-//					driver.findElement(By.xpath("//input[@placeholder='select size']")).click();
-//					Thread.sleep(5000);
-//					WebElement size = driver.findElement(By.className("dropdown-menu"));
-//					List<WebElement> sizes = size.findElements(By.tagName("li"));
-//					for (int i1 = 0; i1 < sizes.size(); i1++) {
-//						if ((sizes.get(i1).getText().trim()).equals("100 mL (3.4 Oz)")) {
-//							// System.out.println("sizes values");
-//							Thread.sleep(2000);
-//							sizes.get(i1).click();
-//						}
-//					}
-//					driver.findElement(By.name("check")).click();
-//					Thread.sleep(2000);
-//					driver.findElement(By.id("img_file"))
-//							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
-//					Thread.sleep(3000);
-//					driver.findElement(By.className("fa-check")).click();
+					js.executeScript("window.scrollTo(300,900)");
+					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']")).click();
+					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']")).clear();
+					Thread.sleep(3000);
+					driver.findElement(By.xpath("//input[@placeholder='www.dermalogica.com']"))
+							.sendKeys("www.google1.com");
+					Thread.sleep(5000);
+					List<WebElement> tickarray4 = driver.findElements(By
+							.xpath("//input[@placeholder='www.dermalogica.com'][1]//following-sibling::div//child::*"));
+					tickarray4.get(2).click();
+					// driver.findElement(By.className("fa-check")).click();
+					Thread.sleep(5000);
+					driver.findElement(By.xpath("//a[@class='anchor c-point' and contains(text(),'add size')]"))
+							.click();
+					Thread.sleep(3000);
+					js.executeScript("window.scrollTo(300,1200)");
+					driver.findElement(By.id("file_0"))
+							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
+					Thread.sleep(3000);
+					driver.findElement(By.id("siliconImage_0"))
+							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
+					Thread.sleep(3000);
+					driver.findElement(By.xpath("//input[@placeholder='select size']")).click();
+					Thread.sleep(5000);
+					WebElement size = driver.findElement(By.className("dropdown-menu"));
+					List<WebElement> sizes = size.findElements(By.tagName("li"));
+					for (int i1 = 0; i1 < sizes.size(); i1++) {
+						if ((sizes.get(i1).getText().trim()).equals("100 mL (3.4 Oz)")) {
+							Thread.sleep(2000);
+							sizes.get(i1).click();
+						}
+					}
+					driver.findElement(By.name("check")).click();
 					Thread.sleep(2000);
+					driver.findElement(By.id("img_file2"))
+							.sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");
+					Thread.sleep(3000);
+					List<WebElement> tickarray5 = driver
+							.findElements(By.xpath("//div[@class='clearfix inpt-icons2']//child::*"));
+					tickarray5.get(2).click();
+					Thread.sleep(5000);
 					driver.findElement(By.className("fa-arrow-left")).click();
 					Thread.sleep(4000);
 				}
