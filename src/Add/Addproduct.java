@@ -14,17 +14,12 @@ public class Addproduct {
 		// TODO Auto-generated method stub
 		System.setProperty("webdriver.chrome.driver", "/Users/rahulmittapalli/Downloads/Drivers/chromedriver");
 		WebDriver driver = new ChromeDriver();
-		// WebDriver driver=new SafariDriver();
 		driver.manage().window().maximize();
-		driver.get("https://dev-pim.dermalogica.com");
-		Thread.sleep(2000);
+		login credentials=new login();
+		credentials.logindetails(driver);	
 		String searchKey = "cleansers";
 		String products = "precleanse";
 		String checkboxs = "shortdescription";
-		driver.findElement(By.xpath("//*[@type='text']")).sendKeys("mittapalli.rahul@gmail.com");
-		driver.findElement(By.xpath("//*[@type='password']")).sendKeys("12345678");
-		driver.findElement(By.xpath("//button[@type='submit']")).click();
-		Thread.sleep(5000);
 		driver.findElement(By.xpath("//button[contains(text(),'Add New')]")).click();
 		driver.findElement(By.className("vue-treeselect__control")).click();
 		Thread.sleep(2000);
