@@ -41,16 +41,8 @@ public class deletecountry {
 							Thread.sleep(3000);
 						}
 					}
-					JavascriptExecutor js = (JavascriptExecutor) driver;
-					js.executeScript("window.scrollTo(0,0)");
-					System.out.println("clicked on View button");
-					driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).get(8)
-							.findElement(By.className("fa-trash-alt")).click();
-					Thread.sleep(5000);
-					List<WebElement> dialogbox = driver.findElements(By.xpath(
-							"//div[@id='Confirmation'][1]//following-sibling::div[@class='vodal-dialog']//following-sibling::button[@class='vodal-confirm-btn']"));
-					dialogbox.get(1).click();
-					Thread.sleep(2000);
+					Deletefunction del=new Deletefunction();
+					del.delete(driver,8);
 				}
 				break;
 			}

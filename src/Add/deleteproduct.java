@@ -45,43 +45,8 @@ public class deleteproduct {
 							Thread.sleep(3000);
 						}
 					}
-					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
-					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					value = pagenumbers.get(pagenumbers.size() - 2).findElement(By.tagName("a")).getText();
-					System.out.println("value is " + value);
-					pagecount = Integer.parseInt(value);
-					System.out.println("pagecount is " + pagecount);
-					JavascriptExecutor js = (JavascriptExecutor) driver;
-					js.executeScript("window.scrollTo(0,0)");
-					// System.out.println(pagecount);
-					System.out.println("clicked on View button");
-					driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).get(7)
-							.findElement(By.className("fa-trash-alt")).click();
-					Thread.sleep(5000);
-					// List<WebElement>dialog=driver.findElements(By.xpath("//div[@id='Confirmation'][1]//following-sibling::div[@class='vodal-dialog']"));
-					List<WebElement> dialogbox = driver.findElements(By.xpath(
-							"//div[@id='Confirmation'][1]//following-sibling::div[@class='vodal-dialog']//following-sibling::button[@class='vodal-confirm-btn']"));
-					dialogbox.get(1).click();
-					// for(int d=0;d<dialog.size();d++)
-					// {
-					// System.out.println(d);
-					// System.out.println(dialog.get(d).isDisplayed());
-					// //System.out.println(dialog.get(d).getTagName());
-					// //System.out.println(dialog.get(d).getText());
-					// if(dialog.get(d).isDisplayed())
-					// {
-					// System.out.println(d);
-					// //System.out.println(dialog.get(d).getTagName());
-					// System.out.println(dialogbox.get(d).getText());
-					// //dialog.get(d).findElement(By.xpath("//"))
-					// //System.out.println(dialog.get(d).findElement(By.xpath("//*[contains(text(),'Yes')]")).isDisplayed());
-					// dialogbox.get(d).click();
-					// }
-					// }
-					// WebElement confirm=driver.findElement(By.id("Confirmation"));
-					// System.out.println(driver.findElement(By.id("Confirmation")).isDisplayed());
-					// System.out.println(driver.findElement(By.xpath("//button[contains(text(),'Yes')]")).isDisplayed());
-					Thread.sleep(2000);
+					Deletefunction del=new Deletefunction();
+					del.delete(driver,7);
 				}
 				break;
 			}

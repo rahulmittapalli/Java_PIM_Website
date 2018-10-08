@@ -45,24 +45,8 @@ public class DeleteAttribute {
 							Thread.sleep(3000);
 						}
 					}
-					WebElement page = driver.findElement(By.xpath("//ul[@name='Pagination']"));
-					List<WebElement> pagenumbers = page.findElements(By.tagName("li"));
-					value = pagenumbers.get(pagenumbers.size() - 2).findElement(By.tagName("a")).getText();
-					System.out.println("value is " + value);
-					pagecount = Integer.parseInt(value);
-					System.out.println("pagecount is " + pagecount);
-					JavascriptExecutor js = (JavascriptExecutor) driver;
-					js.executeScript("window.scrollTo(0,0)");
-					// System.out.println(pagecount);
-					System.out.println("clicked on View button");
-					driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).get(6)
-							.findElement(By.className("fa-trash-alt")).click();
-					Thread.sleep(5000);
-					// List<WebElement>dialog=driver.findElements(By.xpath("//div[@id='Confirmation'][1]//following-sibling::div[@class='vodal-dialog']"));
-					List<WebElement> dialogbox = driver.findElements(By.xpath(
-							"//div[@id='Confirmation'][1]//following-sibling::div[@class='vodal-dialog']//following-sibling::button[@class='vodal-confirm-btn']"));
-					dialogbox.get(1).click();
-					Thread.sleep(2000);
+					Deletefunction del=new Deletefunction();
+					del.delete(driver,6);
 				}
 				break;
 			}
