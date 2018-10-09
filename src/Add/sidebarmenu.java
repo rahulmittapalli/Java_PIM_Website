@@ -18,12 +18,15 @@ public class sidebarmenu {
 			Thread.sleep(2000);
 			System.out.println(list.get(i).findElement(By.tagName("a")).getText());
 			if (list.get(i).findElement(By.tagName("a")).getText().equals(mainmenu)) {
-				if(driver.findElement(By.className("rotate_sideicon")).isDisplayed()) {	
+				//System.out.println(driver.findElement(By.className("rotate_sideicon")).isDisplayed());
+				if(mainmenu.equals("Products Database")) {
+					//System.out.println("Product Database is clicked");
 				}
 				else
 				{
 				list.get(i).findElement(By.tagName("a")).click();
-				Thread.sleep(2000);
+				Thread.sleep(3000);
+				System.out.println("HEllo world");
 				}
 				if (list.get(i).findElement(By.tagName("ul")) != null) {
 					List<WebElement> child = list.get(i).findElements(By.tagName("li"));
