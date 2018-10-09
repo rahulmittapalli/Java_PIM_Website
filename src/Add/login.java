@@ -2,8 +2,8 @@ package Add;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-public class login {
 
+public class login {
 	public void logindetails(WebDriver driver) throws InterruptedException {
 		// WebDriver driver=new SafariDriver();
 		driver.get("https://dev-pim.dermalogica.com");	

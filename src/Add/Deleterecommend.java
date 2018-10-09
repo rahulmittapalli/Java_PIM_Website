@@ -52,8 +52,9 @@ public class Deleterecommend {
 							break;
 						}
 					}
-					Deletefunction del = new Deletefunction();
-					del.delete(driver, 5, 0);
+					Thread.sleep(5000);
+					 Deletefunction del = new Deletefunction();
+					 del.delete(driver, 5, 0);
 				}
 				break;
 			}

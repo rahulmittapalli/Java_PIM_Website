@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 public class Deletefunction {
 	public void delete(WebDriver driver, String value, int number) throws InterruptedException {
+		System.out.println("Hello1");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0,0)");
 		driver.findElement(By.xpath("//input[@placeholder='search']")).sendKeys(value);
@@ -22,8 +23,8 @@ public class Deletefunction {
 		dialogbox.get(1).click();
 		Thread.sleep(3000);
 	}
-
 	public void delete(WebDriver driver, int number) throws InterruptedException {
+		System.out.println("Hello2");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0,0)");
 		// driver.findElement(By.xpath("//input[@placeholder='search']")).sendKeys(value);
@@ -37,8 +38,8 @@ public class Deletefunction {
 		dialogbox.get(1).click();
 		Thread.sleep(3000);
 	}
-
 	public void delete(WebDriver driver, int number, int n) throws InterruptedException {
+		System.out.println(driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).size());
 		driver.findElements(By.tagName("tr")).get(1).findElements(By.tagName("td")).get(number)
 				.findElement(By.className("fa-trash-alt")).click();
 		Thread.sleep(5000);
