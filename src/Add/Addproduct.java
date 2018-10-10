@@ -25,9 +25,11 @@ public class Addproduct {
 		Thread.sleep(2000);
 		driver.findElement(By.className("vue-treeselect__input")).sendKeys(searchKey);
 		Thread.sleep(2000);
+		dropdown d=new dropdown();
 		List<WebElement> category = driver.findElements(By.className("vue-treeselect__option--matched"));
 		for (int i = 0; i < category.size(); i++) {
-			if ((category.get(i).getText()).toLowerCase().trim().equals(searchKey)) {
+			System.out.println(category.get(i).getText());
+			if ((category.get(i).getText()).trim().equals("cleansers")) {
 				category.get(i).click();
 			}
 		}
@@ -42,12 +44,7 @@ public class Addproduct {
 		driver.findElement(By.xpath("//input[@placeholder='select preferred products']")).sendKeys(products);
 		WebElement prescribeproducts = driver.findElement(By.className("dropdown-menu"));
 		List<WebElement> drop = prescribeproducts.findElements(By.tagName("li"));
-		for (int i = 0; i < drop.size(); i++) {
-			if ((drop.get(i).getText().trim()).equals(products)) {
-				Thread.sleep(2000);
-				drop.get(i).click();
-			}
-		}
+		d.dropdownvalue(driver,drop,"products");
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//*[@data-placeholder='add ingredients']")).sendKeys("Ingredients");
 		Thread.sleep(3000);
@@ -69,24 +66,12 @@ public class Addproduct {
 		WebElement date = driver.findElement(By.className("date_select"));
 		date.click();
 		List<WebElement> select = date.findElements(By.tagName("li"));
-		for (int i = 0; i < select.size(); i++) {
-			if ((select.get(i).getText().trim()).equals("Start Date")) {
-				Thread.sleep(2000);
-				select.get(i).click();
-			}
-		}
-		Thread.sleep(8000);
-		driver.findElement(By.className("dateInput")).click();
+		d.dropdownvalue(driver,select,"Start Date");
 		WebElement calendar = driver.findElement(By.className("dateInput"));
+		calendar.click();	
 		Thread.sleep(4000);
 		List<WebElement> dateread = calendar.findElements(By.className("c-day-content"));
-		for (int i = 0; i < dateread.size(); i++) {
-			if (dateread.get(i).getText().equals("12")) {
-				System.out.println("Selected the date");
-				dateread.get(i).click();
-				break;
-			}
-		}
+		d.dropdownvalue(driver,dateread,"12");
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector(".anchor.c-point")).click();
 		Thread.sleep(2000);
@@ -105,13 +90,7 @@ public class Addproduct {
 		Thread.sleep(5000);
 		WebElement size = driver.findElement(By.className("dropdown-menu"));
 		List<WebElement> sizes = size.findElements(By.tagName("li"));
-		for (int i = 0; i < sizes.size(); i++) {
-			if ((sizes.get(i).getText().trim()).equals("100 mL (3.4 Oz)")) {
-				// System.out.println("sizes values");
-				Thread.sleep(2000);
-				sizes.get(i).click();
-			}
-		}
+		d.dropdownvalue(driver,sizes,"100 mL (3.4 Oz)");
 		driver.findElement(By.name("check")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.id("img_file")).sendKeys("/Users/rahulmittapalli/Desktop/udayEmulator screens/8.png");

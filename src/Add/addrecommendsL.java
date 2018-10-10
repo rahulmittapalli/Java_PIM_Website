@@ -22,12 +22,8 @@ public class addrecommendsL {
 		driver.findElement(By.xpath("//input[@type='search']")).click();
 		WebElement dropdown = driver.findElement(By.className("dropdown-menu"));
 		List<WebElement> drop = dropdown.findElements(By.tagName("li"));
-		for (int k = 0; k < drop.size(); k++) {
-			if ((drop.get(k).getText().trim()).equals("APP")) {
-				Thread.sleep(2000);
-				drop.get(k).click();
-			}
-		}
+		dropdown d=new dropdown();
+		d.dropdownvalue(driver,drop,"APP");
 		driver.findElement(By.xpath("//button[contains(text(),'Add New')]")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//input[@placeholder='recommendation name']")).sendKeys("recommendation");

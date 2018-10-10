@@ -25,12 +25,8 @@ public class Deleterecommend {
 		driver.findElement(By.className("searchable")).click();
 		WebElement size = driver.findElement(By.className("dropdown-menu"));
 		List<WebElement> sizes = size.findElements(By.tagName("li"));
-		for (int i1 = 0; i1 < sizes.size(); i1++) {
-			if (sizes.get(i1).getText().equals("Rapid Reveal")) {
-				sizes.get(i1).click();
-				break;
-			}
-		}
+		dropdown d=new dropdown();
+		d.dropdownvalue(driver, sizes, "Rapid Reveal");
 		Thread.sleep(5000);
 		Deletefunction del = new Deletefunction();
 		del.delete(driver, 5, 0);

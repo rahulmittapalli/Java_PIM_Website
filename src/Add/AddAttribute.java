@@ -21,22 +21,16 @@ public class AddAttribute {
 		sd.sidebar(driver,"Products Database","Attributes");
 		driver.findElement(By.xpath("//button[contains(text(),'Add New')]")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//input[@placeholder='attribute name']")).sendKeys("Attribute123");
+		driver.findElement(By.xpath("//input[@placeholder='attribute name']")).sendKeys("Attribute1234");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@data-placeholder='add description']")).sendKeys("Attribute Description");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@type='search']")).click();
 		Thread.sleep(2000);
-		WebElement attribute = driver.findElement(By.className("dropdown-menu"));
-		List<WebElement> drop = attribute.findElements(By.tagName("li"));
-		for (int k = 0; k < drop.size(); k++) {
-			System.out.println("Inside the dropdown");
-			System.out.println(drop.get(k).getText());
-			if ((drop.get(k).getText().trim()).equals("Text")) {
-				Thread.sleep(2000);
-				drop.get(k).click();
-			}
-		}
+		dropdown d=new dropdown();
+		WebElement prescribeproducts = driver.findElement(By.className("dropdown-menu"));
+		List<WebElement> drop = prescribeproducts.findElements(By.tagName("li"));
+		d.dropdownvalue(driver,drop,"Text");
 		driver.findElement(By.xpath("//input[@placeholder='add Text']")).sendKeys("Default value");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button[@type='submit']")).click();

@@ -8,9 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 
-public class sortbyname {
+public class reviewproductlist {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -21,7 +20,7 @@ public class sortbyname {
 		login credentials = new login();
 		credentials.logindetails(driver);
 		sidebarmenu sd = new sidebarmenu();
-		sd.sidebar(driver, "Products Database", "Products");
+		sd.sidebar(driver, "Review", "Products");
 		Thread.sleep(3000);
 		String value = null;
 		int count = 0;
@@ -34,17 +33,16 @@ public class sortbyname {
 		System.out.println("pagecount is " + pagecount);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0,0)");
-		driver.findElement(By.className("fa-sort")).click();
-		Thread.sleep(5000);
-		driver.findElement(By.className("fa-sort-down")).click();
-		Thread.sleep(5000);
 		for (int p = 1; p <= pagecount; p++) {
+			// System.out.println("p value is "+p);
 			List<WebElement> rows = driver.findElements(By.tagName("tr"));
 			for (int k = 1; k <= rows.size() - 2; k++) {
+				// System.out.println("rows size " + rows.size());
 				List<WebElement> columns = rows.get(k).findElements(By.tagName("td"));
-				System.out.println(columns.get(1).getText());
+				// System.out.println("Value of k " + k);
+				System.out.println(columns.get(0).getText());
+				count++;
 			}
-			Thread.sleep(2000);
 			if (p != pagecount && driver.findElement(By.className("fa-chevron-double-right")).isDisplayed()) {
 				WebElement svgObj = driver.findElement(By.className("fa-chevron-double-right"));
 				Actions actionBuilder = new Actions(driver);
